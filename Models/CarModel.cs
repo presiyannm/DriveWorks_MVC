@@ -22,6 +22,9 @@ namespace DriveWorks_MVC.Models
         [Required]
         public int YearOfRelease { get; set; }
 
+        [Required]
+        public string EngineInformation { get; set; } = string.Empty;
+
         public virtual ICollection<CarPart> CarParts { get; set; } = new HashSet<CarPart>();
     }
 }

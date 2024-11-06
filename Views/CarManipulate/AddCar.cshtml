@@ -1,0 +1,58 @@
+﻿@model DriveWorks_MVC.Models.ViewModels.AddCarModelViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Car</title>
+    <link rel="stylesheet" href="~/css/AddCar.css" asp-append-version="true">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <a href="/" class="nav-button">Home</a>
+        <a href="/Home/Privacy" class="nav-button">Privacy</a>
+    </nav>
+
+    <div class="form-container">
+        <h2>Add New Car</h2>
+        <form asp-action="AddCar" asp-controller="CarManipulate" method="post">
+            <div class="form-group">
+                <label asp-for="BrandName"></label>
+                <input asp-for="BrandName" type="text" />
+                <span asp-validation-for="BrandName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ModelName"></label>
+                <input asp-for="ModelName" type="text" />
+                <span asp-validation-for="ModelName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EngineInformation"></label>
+                <input asp-for="EngineInformation" type="text" />
+                <span asp-validation-for="EngineInformation" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="YearOfRelease"></label>
+                <input asp-for="YearOfRelease" type="number" />
+                <span asp-validation-for="YearOfRelease" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="submit-button">Add Car</button>
+        </form>
+    </div>
+</body>
+</html>
