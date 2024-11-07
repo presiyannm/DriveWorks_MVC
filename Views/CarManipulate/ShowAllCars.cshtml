@@ -16,6 +16,7 @@
             <th>Year of Release</th>
             <th>Engine Information</th>
             <th>Car Parts</th>
+            <th>Actions</th> <!-- New column for actions like Edit -->
         </tr>
     </thead>
     <tbody>
@@ -42,6 +43,10 @@
                     {
                         <span>No parts available</span>
                     }
+                </td>
+                <td>
+                    <!-- Edit button that redirects to the EditCar action -->
+                    <a asp-controller="CarManipulate" asp-action="EditCar" asp-route-id="@car.Id" class="btn btn-primary">Edit</a>
                 </td>
             </tr>
         }

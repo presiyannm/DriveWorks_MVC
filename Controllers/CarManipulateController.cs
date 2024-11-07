@@ -36,9 +36,20 @@ namespace DriveWorks_MVC.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditCar(int id)
+        public async Task<IActionResult> EditCar(int id)
         {
-            return View(carManipulateService.GetCarById(id));
+            var carModelViewModel = await carManipulateService.GetCarById(id);
+
+            return View(carModelViewModel);
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> EditCar(CarModelViewModel carModelViewModel)
+        {
+            await carManipulateService.EditCar(carModelViewModel);
+
+            return View(nameof(ShowAllCars));
         }
     }
 }

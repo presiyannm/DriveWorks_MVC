@@ -22,5 +22,7 @@ namespace DriveWorks_MVC.Models.ViewModels
         [Required]
         public int YearOfRelease { get; set; }
 
+        public List<CarPart> Parts { get; set; } = new();
+
     }
 }

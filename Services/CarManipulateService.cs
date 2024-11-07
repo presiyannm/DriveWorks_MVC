@@ -38,6 +38,7 @@ namespace DriveWorks_MVC.Services
             var car = new CarModel()
             {
                 Id = addCarModelViewModel.Id,
+                Brand = brand,
                 BrandId = brand.Id,
                 Name = addCarModelViewModel.ModelName,
                 Description = addCarModelViewModel.Description,
@@ -56,14 +57,16 @@ namespace DriveWorks_MVC.Services
 
         public async Task<CarModelViewModel> EditCar(CarModelViewModel carModelViewModel)
         {            
-            var carModel = _dbContext.CarModels.FirstOrDefaultAsync(c => c.Id ==  carModelViewModel.Id);
+            var carModel = await _dbContext.CarModels.FirstOrDefaultAsync(c => c.Id ==  carModelViewModel.Id);
 
             if (carModel == null)
             {
                 throw new Exception("Car cannnot be found");
             }
 
-            
+            UpdateCarValues(carModelViewModel, carModel);
+
+            return carModelViewModel;
 
         }
 
@@ -93,6 +96,18 @@ namespace DriveWorks_MVC.Services
             };
 
             return carViewModel;
+        }
+
+        public CarModel UpdateCarValues(CarModelViewModel carModelViewModel, CarModel carModel)
+        {
+            carModel.Name = carModelViewModel.ModelName;
+            carModel.Brand.Name = carModelViewModel.BrandName;
+            carModel.Description = carModelViewModel.Description;
+            carModel.EngineInformation = carModelViewModel.EngineInformation;
+            carModel.YearOfRelease = carModelViewModel.YearOfRelease;
+            carModel.CarParts = carModelViewModel.Parts;
+
+            return carModel;
         }
     }
 
