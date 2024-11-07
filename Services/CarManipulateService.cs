@@ -2,6 +2,7 @@
 using DriveWorks_MVC.Interfaces;
 using DriveWorks_MVC.Models;
 using DriveWorks_MVC.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,6 +37,7 @@ namespace DriveWorks_MVC.Services
 
             var car = new CarModel()
             {
+                Id = addCarModelViewModel.Id,
                 BrandId = brand.Id,
                 Name = addCarModelViewModel.ModelName,
                 Description = addCarModelViewModel.Description,
@@ -52,21 +54,45 @@ namespace DriveWorks_MVC.Services
             return addCarModelViewModel;
         }
 
-        //public async Task<CarModelViewModel> EditCar(CarModelViewModel carModelViewModel)
-        //{
-        //    var car = _dbContext.CarModels.FirstOrDefaultAsync(x => x.Name == carModelViewModel.ModelName);
+        public async Task<CarModelViewModel> EditCar(CarModelViewModel carModelViewModel)
+        {            
+            var carModel = _dbContext.CarModels.FirstOrDefaultAsync(c => c.Id ==  carModelViewModel.Id);
 
-        //    if (car == null)
-        //    {
-        //        throw new Exception("Car cannot be found");
-        //    }
+            if (carModel == null)
+            {
+                throw new Exception("Car cannnot be found");
+            }
 
+            
 
-        //}
+        }
 
         public async Task<List<CarModel>> GetAllCarsAsync()
         {
-           
+            var cars = _dbContext.CarModels.Include(c => c.Brand).ToListAsync();
+
+            return await cars;
+        }
+
+        public async Task<CarModelViewModel> GetCarById(int id)
+        {
+            var car = await _dbContext.CarModels.FirstOrDefaultAsync(c => c.Id == id);
+
+            if (car == null)
+            {
+                throw new Exception("car cannot be found");
+            }
+
+            var carViewModel = new CarModelViewModel()
+            {
+                BrandName = car.Brand.Name,
+                Description = car.Description,
+                EngineInformation = car.EngineInformation,
+                ModelName = car.Name,
+                YearOfRelease = car.YearOfRelease
+            };
+
+            return carViewModel;
         }
     }
 

@@ -4,6 +4,9 @@ namespace DriveWorks_MVC.Models.ViewModels
 {
     public class CarModelViewModel
     {
+
+        public int Id { get; set; }
+
         [Required]
         public string BrandName {  get; set; } = string.Empty;
 

@@ -1,5 +1,6 @@
 ﻿using DriveWorks_MVC.Models;
 using DriveWorks_MVC.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DriveWorks_MVC.Interfaces
@@ -8,9 +9,11 @@ namespace DriveWorks_MVC.Interfaces
     {
         public Task<CarModelViewModel> AddCar(CarModelViewModel addCarModelViewModel);
 
-        //public Task<CarModelViewModel> EditCar(CarModelViewModel carModelViewModel);
+        public Task<CarModelViewModel> EditCar(CarModelViewModel carModelViewModel);
 
-        public Task<List<CarModelViewModel>> GetAllCarsAsync();
+        public Task<List<CarModel>> GetAllCarsAsync();
+
+        public Task<CarModelViewModel> GetCarById(int id);
 
     }
 }

@@ -35,10 +35,10 @@ namespace DriveWorks_MVC.Controllers
             return View(await carManipulateService.GetAllCarsAsync());
         }
 
-        //[HttpGet]
-        //public IActionResult EditCar(CarModelViewModel carModelViewModel)
-        //{
-        //    return View(carModelViewModel);
-        //}
+        [HttpGet]
+        public IActionResult EditCar(int id)
+        {
+            return View(carManipulateService.GetCarById(id));
+        }
     }
 }
