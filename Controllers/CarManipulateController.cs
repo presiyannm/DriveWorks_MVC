@@ -32,7 +32,9 @@ namespace DriveWorks_MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> ShowAllCars()
         {
-            return View(await carManipulateService.GetAllCarsAsync());
+            var cars = await carManipulateService.GetAllCarsAsync();
+
+            return View(cars);
         }
 
         [HttpGet]
@@ -44,12 +46,19 @@ namespace DriveWorks_MVC.Controllers
         }
 
         [HttpPost]
-
         public async Task<IActionResult> EditCar(CarModelViewModel carModelViewModel)
         {
             await carManipulateService.EditCar(carModelViewModel);
 
-            return View(nameof(ShowAllCars));
+            return RedirectToAction(nameof(ShowAllCars));
+            
+        }
+
+        public async Task<IActionResult> RemoveCar(int id)
+        {
+            await carManipulateService.RemoveCar(id);
+
+            return RedirectToAction(nameof(ShowAllCars));
         }
     }
 }

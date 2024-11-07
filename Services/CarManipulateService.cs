@@ -38,7 +38,6 @@ namespace DriveWorks_MVC.Services
             var car = new CarModel()
             {
                 Id = addCarModelViewModel.Id,
-                Brand = brand,
                 BrandId = brand.Id,
                 Name = addCarModelViewModel.ModelName,
                 Description = addCarModelViewModel.Description,
@@ -55,7 +54,7 @@ namespace DriveWorks_MVC.Services
             return addCarModelViewModel;
         }
 
-        public async Task<CarModelViewModel> EditCar(CarModelViewModel carModelViewModel)
+        public async Task EditCar(CarModelViewModel carModelViewModel)
         {            
             var carModel = await _dbContext.CarModels.FirstOrDefaultAsync(c => c.Id ==  carModelViewModel.Id);
 
@@ -66,7 +65,7 @@ namespace DriveWorks_MVC.Services
 
             UpdateCarValues(carModelViewModel, carModel);
 
-            return carModelViewModel;
+            await _dbContext.SaveChangesAsync();
 
         }
 
@@ -83,12 +82,19 @@ namespace DriveWorks_MVC.Services
 
             if (car == null)
             {
-                throw new Exception("car cannot be found");
+                throw new Exception("Car cannot be found");
+            }
+
+            var carBrand = await _dbContext.CarBrands.FirstOrDefaultAsync(b => b.Id == car.BrandId);
+
+            if (carBrand == null)
+            {
+                throw new Exception("Car's brand cannot be found");
             }
 
             var carViewModel = new CarModelViewModel()
             {
-                BrandName = car.Brand.Name,
+                BrandName = carBrand.Name,
                 Description = car.Description,
                 EngineInformation = car.EngineInformation,
                 ModelName = car.Name,
@@ -101,13 +107,29 @@ namespace DriveWorks_MVC.Services
         public CarModel UpdateCarValues(CarModelViewModel carModelViewModel, CarModel carModel)
         {
             carModel.Name = carModelViewModel.ModelName;
-            carModel.Brand.Name = carModelViewModel.BrandName;
             carModel.Description = carModelViewModel.Description;
             carModel.EngineInformation = carModelViewModel.EngineInformation;
             carModel.YearOfRelease = carModelViewModel.YearOfRelease;
             carModel.CarParts = carModelViewModel.Parts;
 
             return carModel;
+        }
+
+        public async Task RemoveCar(int id)
+        {
+            var carToRemove = await _dbContext.CarModels.FirstOrDefaultAsync(c => c.Id == id);
+
+            if (carToRemove != null)
+            {
+                _dbContext.CarModels.Remove(carToRemove);
+
+                await _dbContext.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception("Car that you want to remove cannot be found");
+            }
+
         }
     }
 

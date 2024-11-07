@@ -13,27 +13,22 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.BrandName"></label>
-        <input asp-for="@Model.BrandName" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="@Model.ModelName"></label>
+        <label asp-for="@Model.ModelName">Model Name</label>
         <input asp-for="@Model.ModelName" class="form-control" />
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.Description"></label>
+        <label asp-for="@Model.Description">Description</label>
         <textarea asp-for="@Model.Description" class="form-control"></textarea>
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.YearOfRelease"></label>
+        <label asp-for="@Model.YearOfRelease">Year of release</label>
         <input asp-for="@Model.YearOfRelease" type="number" class="form-control" />
     </div>
 
     <div class="form-group">
-        <label asp-for="@Model.EngineInformation"></label>
+        <label asp-for="@Model.EngineInformation">Engine information</label>
         <input asp-for="@Model.EngineInformation" class="form-control" />
     </div>
 
@@ -58,5 +53,5 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Save Changes</button>
-    <a asp-controller="CarManipulateController" asp-action="ShowAllCars" class="btn btn-secondary">Cancel</a>
+    <a asp-controller="CarManipulate" asp-action="ShowAllCars" class="btn btn-secondary">Cancel</a>
 </form>

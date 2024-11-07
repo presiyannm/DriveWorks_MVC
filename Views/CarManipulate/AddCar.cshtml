@@ -1,7 +1,5 @@
 ﻿@model DriveWorks_MVC.Models.ViewModels.CarModelViewModel
-@{
-    Layout = null;
-}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,12 +10,6 @@
     <link rel="stylesheet" href="~/css/AddCar.css" asp-append-version="true">
 </head>
 <body>
-    <!-- Navigation bar -->
-    <nav class="navbar">
-        <a href="/" class="nav-button">Home</a>
-        <a href="/Home/Privacy" class="nav-button">Privacy</a>
-    </nav>
-
     <div class="form-container">
         <h2>Add New Car</h2>
         <form asp-action="AddCar" asp-controller="CarManipulate" method="post">

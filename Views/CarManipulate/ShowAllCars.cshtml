@@ -20,35 +20,45 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var car in Model)
+
+        @if (Model != null && Model.Any())
         {
-            <tr>
-                <td>@car.Id</td>
-                <td>@car.Brand?.Name</td>
-                <td>@car.Name</td>
-                <td>@car.Description</td>
-                <td>@car.YearOfRelease</td>
-                <td>@car.EngineInformation</td>
-                <td>
-                    @if (car.CarParts != null && car.CarParts.Any())
-                    {
-                        <ul>
-                            @foreach (var part in car.CarParts)
-                            {
-                                <li>@part.Name</li>  <!-- Assuming CarPart has a Name property -->
-                            }
-                        </ul>
-                    }
-                    else
-                    {
-                        <span>No parts available</span>
-                    }
-                </td>
-                <td>
-                    <!-- Edit button that redirects to the EditCar action -->
-                    <a asp-controller="CarManipulate" asp-action="EditCar" asp-route-id="@car.Id" class="btn btn-primary">Edit</a>
-                </td>
-            </tr>
+            @foreach (var car in Model)
+            {
+                <tr>
+                    <td>@car.Id</td>
+                    <td>@car.Brand?.Name</td>
+                    <td>@car.Name</td>
+                    <td>@car.Description</td>
+                    <td>@car.YearOfRelease</td>
+                    <td>@car.EngineInformation</td>
+                    <td>
+                        @if (car.CarParts != null && car.CarParts.Any())
+                        {
+                            <ul>
+                                @foreach (var part in car.CarParts)
+                                {
+                                    <li>@part.Name</li>  <!-- Assuming CarPart has a Name property -->
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <span>No parts available</span>
+                        }
+                    </td>
+                    <td>
+                        <!-- Edit button that redirects to the EditCar action -->
+                        <a asp-controller="CarManipulate" asp-action="EditCar" asp-route-id="@car.Id" class="btn btn-primary">Edit</a> |
+                        <a asp-controller="CarManipulate" asp-action="RemoveCar" asp-route-id="@car.Id" class="btn btn-primary" style="background-color:red">Delete</a>
+                    </td>
+                </tr>
+            }
         }
+        else
+        {
+            <tr><td colspan="8">No cars found.</td></tr>
+        }
+
     </tbody>
 </table>

@@ -82,28 +82,6 @@ body {
     display: block;
 }
 
-/* Navbar styling */
-.navbar {
-    display: flex;
-    justify-content: center;
-    background-color: #f4f4f9;
-    padding: 10px;
-}
-
-.nav-button {
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    margin-right: 10px;
-    border-radius: 4px;
-    background-color: #007bff;
-    transition: background-color 0.3s;
-}
-
-    .nav-button:hover {
-        background-color: #555;
-    }
-
 /* Form container styling */
 .form-container {
     max-width: 500px;
