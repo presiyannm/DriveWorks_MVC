@@ -1,4 +1,5 @@
 ﻿using DriveWorks_MVC.Interfaces;
+using DriveWorks_MVC.Models;
 using DriveWorks_MVC.Models.ViewModels;
 using DriveWorks_MVC.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -21,11 +22,23 @@ namespace DriveWorks_MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddCar(AddCarModelViewModel addCarModelViewModel)
+        public async Task<IActionResult> AddCar(CarModelViewModel addCarModelViewModel)
         {
             await carManipulateService.AddCar(addCarModelViewModel);
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> ShowAllCars()
+        {
+            return View(await carManipulateService.GetAllCarsAsync());
+        }
+
+        //[HttpGet]
+        //public IActionResult EditCar(CarModelViewModel carModelViewModel)
+        //{
+        //    return View(carModelViewModel);
+        //}
     }
 }

@@ -16,7 +16,7 @@ namespace DriveWorks_MVC.Services
             _dbContext = dbContext;
         }
 
-        public async Task<AddCarModelViewModel> AddCar(AddCarModelViewModel addCarModelViewModel)
+        public async Task<CarModelViewModel> AddCar(CarModelViewModel addCarModelViewModel)
         {
 
             var brand = await _dbContext.CarBrands.FirstOrDefaultAsync(b => b.Name == addCarModelViewModel.BrandName);
@@ -43,11 +43,30 @@ namespace DriveWorks_MVC.Services
                 EngineInformation = addCarModelViewModel.EngineInformation,
             };
 
+            brand.CarModels.Add(car);
+
             await _dbContext.CarModels.AddAsync(car);
 
             await _dbContext.SaveChangesAsync();
 
             return addCarModelViewModel;
+        }
+
+        //public async Task<CarModelViewModel> EditCar(CarModelViewModel carModelViewModel)
+        //{
+        //    var car = _dbContext.CarModels.FirstOrDefaultAsync(x => x.Name == carModelViewModel.ModelName);
+
+        //    if (car == null)
+        //    {
+        //        throw new Exception("Car cannot be found");
+        //    }
+
+
+        //}
+
+        public async Task<List<CarModel>> GetAllCarsAsync()
+        {
+           
         }
     }
 

@@ -2,7 +2,7 @@
 
 namespace DriveWorks_MVC.Models.ViewModels
 {
-    public class AddCarModelViewModel
+    public class CarModelViewModel
     {
         [Required]
         public string BrandName {  get; set; } = string.Empty;

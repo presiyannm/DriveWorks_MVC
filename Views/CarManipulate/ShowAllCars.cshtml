@@ -1,0 +1,49 @@
+﻿@model List<DriveWorks_MVC.Models.CarModel>
+
+@{
+    ViewData["Title"] = "All Cars";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Brand</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Year of Release</th>
+            <th>Engine Information</th>
+            <th>Car Parts</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var car in Model)
+        {
+            <tr>
+                <td>@car.Id</td>
+                <td>@car.Brand?.Name</td>
+                <td>@car.Name</td>
+                <td>@car.Description</td>
+                <td>@car.YearOfRelease</td>
+                <td>@car.EngineInformation</td>
+                <td>
+                    @if (car.CarParts != null && car.CarParts.Any())
+                    {
+                        <ul>
+                            @foreach (var part in car.CarParts)
+                            {
+                                <li>@part.Name</li>  <!-- Assuming CarPart has a Name property -->
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <span>No parts available</span>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
