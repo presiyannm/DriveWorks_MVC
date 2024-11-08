@@ -1,11 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
-namespace DriveWorks_MVC.Models
+namespace DriveWorks_MVC.Models.ViewModels
 {
-    public class CarPart
+    public class CarPartViewModel
     {
-
-        [Key]
         public int Id { get; set; }
 
         [Required]
@@ -23,8 +22,8 @@ namespace DriveWorks_MVC.Models
         [Required]
         public int Quantity { get; set; }
 
-        public bool IsPartAccessible { get; set; }
+        public List<CarModel> Cars { get; set; } = new();
 
-        public virtual ICollection<CarModel> CarModels { get; set; } = new HashSet<CarModel>();
+        public List<SelectListItem> CarModelOptions { get; set; } = new();
     }
 }

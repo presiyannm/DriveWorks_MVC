@@ -1,0 +1,49 @@
+﻿@model DriveWorks_MVC.Models.ViewModels.CarPartViewModel
+
+@{
+    ViewData["Title"] = "Add Car Part";
+}
+
+<h2>Add New Car Part</h2>
+
+<form asp-action="AddPart" method="post">
+    <div class="form-group">
+        <label for="Name">Part Name</label>
+        <input asp-for="@Model.Name" class="form-control" id="Name" placeholder="Enter Part Name" />
+        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <textarea asp-for="@Model.Description" class="form-control" id="Description" placeholder="Enter Description"></textarea>
+        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Price">Price</label>
+        <input asp-for="@Model.Price" class="form-control" id="Price" type="number" step="0.01" placeholder="Enter Price" />
+        <span asp-validation-for="@Model.Price" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Type">Part Type</label>
+        <input asp-for="@Model.Type" class="form-control" id="Type" placeholder="Enter Part Type" />
+        <span asp-validation-for="@Model.Type" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Quantity">Quantity</label>
+        <input asp-for="@Model.Quantity" class="form-control" id="Quantity" type="number" placeholder="Enter Quantity" />
+        <span asp-validation-for="@Model.Quantity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="Cars">Select Car Models</label>
+        <select asp-for="Cars" asp-items="Model.CarModelOptions" class="form-control" multiple="multiple">
+        </select>
+        <span asp-validation-for="Cars" class="text-danger"></span>
+    </div>
+
+    <br/>
+    <button type="submit" class="btn btn-primary">Add Car Part</button>
+</form>

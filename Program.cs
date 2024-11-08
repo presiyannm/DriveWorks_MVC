@@ -20,6 +20,8 @@ namespace DriveWorks_MVC
 
             builder.Services.AddScoped<ICarManipulate, CarManipulateService>();
 
+            builder.Services.AddScoped<ICarPartsManipulate, CarPartsManipulateService>();
+
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
