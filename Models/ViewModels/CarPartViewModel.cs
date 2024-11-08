@@ -24,6 +24,8 @@ namespace DriveWorks_MVC.Models.ViewModels
 
         public List<CarModel> Cars { get; set; } = new();
 
+        public IEnumerable<int> SelectedCarIds { get; set; } = new HashSet<int>();
+
         public List<SelectListItem> CarModelOptions { get; set; } = new();
     }
 }

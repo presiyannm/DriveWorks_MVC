@@ -24,12 +24,16 @@ namespace DriveWorks_MVC.Services
                 Price = carPartViewModel.Price,
                 Quantity = carPartViewModel.Quantity,
                 Type = carPartViewModel.Type,
-                CarModels = carPartViewModel.Cars,
+                IsPartAccessible = carPartViewModel.Quantity > 0
             };
 
-            if (carPartToAdd.Quantity > 0)
+            var selectedCarModels = await _dbContext.CarModels
+            .Where(cm => carPartViewModel.SelectedCarIds.Contains(cm.Id))
+            .ToListAsync();
+
+            foreach(var carModel in selectedCarModels)
             {
-                carPartToAdd.IsPartAccessible = true;
+                carPartToAdd.CarModels.Add(carModel);
             }
 
             await _dbContext.CarParts.AddAsync(carPartToAdd);
@@ -42,6 +46,13 @@ namespace DriveWorks_MVC.Services
         public async Task<List<CarModel>> GetAllCarModels()
         {
             return (await _dbContext.CarModels.ToListAsync());
+        }
+
+        public async Task<List<CarPart>> GetAllCarPartsAsync()
+        {
+            var carParts = await _dbContext.CarParts.Include(c => c.CarModels).ToListAsync();
+
+            return carParts;
         }
     }
 }

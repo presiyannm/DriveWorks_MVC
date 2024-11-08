@@ -39,9 +39,9 @@
 
     <div class="form-group">
         <label for="Cars">Select Car Models</label>
-        <select asp-for="Cars" asp-items="Model.CarModelOptions" class="form-control" multiple="multiple">
+        <select asp-for="@Model.SelectedCarIds" asp-items="@Model.CarModelOptions" class="form-control" multiple="multiple">
         </select>
-        <span asp-validation-for="Cars" class="text-danger"></span>
+        <span asp-validation-for="@Model.SelectedCarIds" class="text-danger"></span>
     </div>
 
     <br/>

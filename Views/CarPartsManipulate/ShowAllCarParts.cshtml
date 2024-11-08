@@ -1,0 +1,44 @@
+﻿@model List<DriveWorks_MVC.Models.CarPart>
+
+@{
+    ViewData["Title"] = "All Car Parts";
+}
+
+<h2>All Car Parts</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Type</th>
+            <th>Is Part Accessible</th>
+            <th>Car Models</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var carPart in Model)
+        {
+            <tr>
+                <td>@carPart.Id</td>
+                <td>@carPart.Name</td>
+                <td>@carPart.Description</td>
+                <td>@carPart.Price.ToString("C")</td>
+                <td>@carPart.Quantity</td>
+                <td>@carPart.Type</td>
+                <td>@(carPart.IsPartAccessible ? "Yes" : "No")</td>
+                <td>
+                    <ul>
+                        @foreach (var carModel in carPart.CarModels)
+                        {
+                            <li>@carModel.Name</li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

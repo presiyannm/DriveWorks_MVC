@@ -71,9 +71,9 @@ namespace DriveWorks_MVC.Services
 
         public async Task<List<CarModel>> GetAllCarsAsync()
         {
-            var cars = _dbContext.CarModels.Include(c => c.Brand).ToListAsync();
+            var cars = await _dbContext.CarModels.Include(c => c.Brand).ToListAsync();
 
-            return await cars;
+            return cars;
         }
 
         public async Task<CarModelViewModel> GetCarById(int id)

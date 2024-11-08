@@ -37,9 +37,17 @@ namespace DriveWorks_MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> AddPart(CarPartViewModel carPartViewModel)
         {
-            await  carPartsManipulateService.AddCarPartAsync(carPartViewModel);
+            await carPartsManipulateService.AddCarPartAsync(carPartViewModel);
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ShowAllCarParts()
+        {
+            var carParts = await carPartsManipulateService.GetAllCarPartsAsync();
+
+            return View(carParts);
         }
     }
 }

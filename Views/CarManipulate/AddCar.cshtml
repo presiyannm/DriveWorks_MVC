@@ -14,33 +14,33 @@
         <h2>Add New Car</h2>
         <form asp-action="AddCar" asp-controller="CarManipulate" method="post">
             <div class="form-group">
-                <label asp-for="BrandName"></label>
-                <input asp-for="BrandName" type="text" />
-                <span asp-validation-for="BrandName" class="text-danger"></span>
+                <label asp-for="@Model.BrandName">Brand Name</label>
+                <input asp-for="@Model.BrandName" type="text" />
+                <span asp-validation-for="@Model.BrandName" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="ModelName"></label>
-                <input asp-for="ModelName" type="text" />
-                <span asp-validation-for="ModelName" class="text-danger"></span>
+                <label asp-for="@Model.ModelName">Model Name</label>
+                <input asp-for="@Model.ModelName" type="text" />
+                <span asp-validation-for="@Model.ModelName" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="Description"></label>
-                <textarea asp-for="Description"></textarea>
+                <label asp-for="@Model.Description">Description</label>
+                <textarea asp-for="@Model.Description"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="EngineInformation"></label>
-                <input asp-for="EngineInformation" type="text" />
-                <span asp-validation-for="EngineInformation" class="text-danger"></span>
+                <label asp-for="@Model.EngineInformation">Engine Information</label>
+                <input asp-for="@Model.EngineInformation" type="text" />
+                <span asp-validation-for="@Model.EngineInformation" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label asp-for="YearOfRelease"></label>
-                <input asp-for="YearOfRelease" type="number" />
-                <span asp-validation-for="YearOfRelease" class="text-danger"></span>
+                <label asp-for="@Model.YearOfRelease">Year Of Release</label>
+                <input asp-for="@Model.YearOfRelease" type="number" />
+                <span asp-validation-for="@Model.YearOfRelease" class="text-danger"></span>
             </div>
 
             <button type="submit" class="submit-button">Add Car</button>
