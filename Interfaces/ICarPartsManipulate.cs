@@ -7,8 +7,16 @@ namespace DriveWorks_MVC.Interfaces
     {
         public Task<CarPartViewModel> AddCarPartAsync(CarPartViewModel carPartViewModel);
 
-        public Task<List<CarModel>> GetAllCarModels();
+        public Task RemoveCarPartById(int id);
+
+        public Task EditCarPart(EditCarPartViewModel carPartViewModel);
+
+        public CarPart UpdateCarPartValues(EditCarPartViewModel carPartViewModel, CarPart carPart);
+
+        public Task<List<CarModel>> GetAllCarModelsAsync();
 
         public Task<List<CarPart>> GetAllCarPartsAsync();
+
+        public Task<CarPart> GetCarPartByIdAsync(int id);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace DriveWorks_MVC.Models.ViewModels
 {
@@ -23,6 +24,10 @@ namespace DriveWorks_MVC.Models.ViewModels
         public int YearOfRelease { get; set; }
 
         public List<CarPart> Parts { get; set; } = new();
+
+        public IEnumerable<int> SelectedCarPartsIds { get; set; } = new HashSet<int>();
+
+        public List<SelectListItem> CarModelOptions { get; set; } = new();
 
     }
 }

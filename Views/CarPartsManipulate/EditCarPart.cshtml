@@ -1,0 +1,55 @@
+﻿@model DriveWorks_MVC.Models.ViewModels.EditCarPartViewModel
+
+@{
+    ViewData["Title"] = "Edit Car Part";
+}
+
+<h2>Edit Car Part</h2>
+
+<form asp-action="EditCarPart" method="post">
+    <div class="form-group">
+        <label asp-for="@Model.CarPart.Id"></label>
+        <input asp-for="@Model.CarPart.Id" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.CarPart.Name"></label>
+        <input asp-for="@Model.CarPart.Name" class="form-control" />
+        <span asp-validation-for="@Model.CarPart.Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.CarPart.Description"></label>
+        <input asp-for="@Model.CarPart.Description" class="form-control" />
+        <span asp-validation-for="@Model.CarPart.Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.CarPart.Price"></label>
+        <input asp-for="@Model.CarPart.Price" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="@Model.CarPart.Price" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.CarPart.Type"></label>
+        <input asp-for="@Model.CarPart.Type" class="form-control" />
+        <span asp-validation-for="@Model.CarPart.Type" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.CarPart.Quantity"></label>
+        <input asp-for="@Model.CarPart.Quantity" class="form-control" type="number" />
+        <span asp-validation-for="@Model.CarPart.Quantity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Select Car Models</label>
+        <select asp-for="@Model.SelectedCarModelIds" asp-items="@(new SelectList(Model.CarModels, "Id", "Name"))" multiple class="form-control">
+        </select>
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Cancel</a>
+</form>

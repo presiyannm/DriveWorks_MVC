@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace DriveWorks_MVC.Models
 {
     public class CarPart
     {
-
         [Key]
         public int Id { get; set; }
 
@@ -24,7 +24,6 @@ namespace DriveWorks_MVC.Models
         public int Quantity { get; set; }
 
         public bool IsPartAccessible { get; set; }
-
         public virtual ICollection<CarModel> CarModels { get; set; } = new HashSet<CarModel>();
     }
 }

@@ -18,7 +18,7 @@ namespace DriveWorks_MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> AddPart()
         {
-            var allCars = await carPartsManipulateService.GetAllCarModels();
+            var allCars = await carPartsManipulateService.GetAllCarModelsAsync();
 
             var carModelOptions = allCars.Select(car => new SelectListItem
             {
@@ -48,6 +48,31 @@ namespace DriveWorks_MVC.Controllers
             var carParts = await carPartsManipulateService.GetAllCarPartsAsync();
 
             return View(carParts);
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> EditCarPart(int id)
+        {
+            var carPart = await carPartsManipulateService.GetCarPartByIdAsync(id);
+
+            var carModels = await carPartsManipulateService.GetAllCarModelsAsync();
+
+            var carPartViewModel = new EditCarPartViewModel()
+            {
+                CarPart = carPart,
+                CarModels = carModels 
+            };
+
+            return View(carPartViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditCarPart(EditCarPartViewModel editCarPartViewModel)
+        {
+             await carPartsManipulateService.EditCarPart(editCarPartViewModel);
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
