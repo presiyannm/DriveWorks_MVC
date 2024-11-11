@@ -1,0 +1,44 @@
+﻿@model DriveWorks_MVC.Models.ViewModels.AssignCarViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assign Car Parts</title>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h2>Assign Car Parts to Models</h2>
+        <form id="assignForm" method="post" asp-action="AssignCarParts" asp-controller="Assign">
+            <div class="form-group">
+                <label for="CarModel">Select Car Model</label>
+                <select id="CarModel" name="CarModelId" class="form-control" asp-for="@Model.carModelId">
+                    <option value="" selected disabled>-- Select Car Model --</option>
+
+                    @foreach (var carModel in Model.carModels)
+                    {
+                        <option value="@carModel.Id">@carModel.Name</option>
+                    }
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="CarParts">Select Car Parts</label>
+                <select id="CarParts" name="CarParts" class="form-control" multiple="multiple" asp-for="@Model.carPartsIds">
+                </select>
+            </div>
+            <br />
+
+            <button type="submit" class="btn btn-primary">Assign</button>
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="~/js/AssignCarAjax.js"></script>
+
+</body>
+</html>

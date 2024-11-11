@@ -43,7 +43,10 @@
                             }
                         </ul>
                     </td>
-                    <td> <a asp-controller="CarPartsManipulate" asp-action="EditCarPart" asp-route-id="@carPart.Id" class="btn btn-primary">Edit</a> </td>
+                    <td>
+                        <a asp-controller="CarPartsManipulate" asp-action="EditCarPart" asp-route-id="@carPart.Id" class="btn btn-primary">Edit</a> |
+                        <a asp-controller="CarPartsManipulate" asp-action="RemoveCarPart" asp-route-id="@carPart.Id" class="btn btn-primary" style="background-color:#FAA0A0">Delete</a>
+                    </td>
                 </tr>
             }
 

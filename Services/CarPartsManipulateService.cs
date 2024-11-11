@@ -31,7 +31,7 @@ namespace DriveWorks_MVC.Services
             .Where(cm => carPartViewModel.SelectedCarIds.Contains(cm.Id))
             .ToListAsync();
 
-            foreach(var carModel in selectedCarModels)
+            foreach (var carModel in selectedCarModels)
             {
                 carPartToAdd.CarModels.Add(carModel);
             }
@@ -45,7 +45,8 @@ namespace DriveWorks_MVC.Services
 
         public async Task EditCarPart(EditCarPartViewModel carPartViewModel)
         {
-            var carPartToUpdate = await _dbContext.CarParts.FirstOrDefaultAsync(c => c.Id == carPartViewModel.CarPart.Id);
+            var carPartToUpdate = await _dbContext.CarParts.Include(cp => cp.CarModels)
+                .FirstOrDefaultAsync(c => c.Id == carPartViewModel.CarPart.Id);
 
             if (carPartToUpdate == null)
             {
@@ -54,22 +55,19 @@ namespace DriveWorks_MVC.Services
 
             UpdateCarPartValues(carPartViewModel, carPartToUpdate);
 
-            carPartToUpdate.CarModels.Clear();
-
-            var partsToRemove = _dbContext.CarParts.Where(cp => cp.Id == carPartToUpdate.Id);
-
-            _dbContext.CarParts.RemoveRange(partsToRemove);
-
             var selectedCarModels = await _dbContext.CarModels
            .Where(cm => carPartViewModel.SelectedCarModelIds.Contains(cm.Id))
            .ToListAsync();
 
+            carPartToUpdate.CarModels.Clear();
+
             foreach (var carModel in selectedCarModels)
             {
-                carPartToUpdate.CarModels.Add(carModel);
+                if (!carPartToUpdate.CarModels.Contains(carModel))
+                {
+                    carPartToUpdate.CarModels.Add(carModel);
+                }
             }
-
-            await _dbContext.CarParts.AddAsync(carPartToUpdate);
 
             await _dbContext.SaveChangesAsync();
 
@@ -99,7 +97,7 @@ namespace DriveWorks_MVC.Services
             return carPart;
         }
 
-        public async Task RemoveCarPartById(int id)
+        public async Task RemoveCarPartByIdAsync(int id)
         {
             var carPartToRemove = await _dbContext.CarParts.FirstOrDefaultAsync(c => c.Id == id);
 

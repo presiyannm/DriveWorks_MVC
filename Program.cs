@@ -3,6 +3,7 @@ using DriveWorks_MVC.Interfaces;
 using DriveWorks_MVC.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace DriveWorks_MVC
 {
@@ -18,9 +19,14 @@ namespace DriveWorks_MVC
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+            builder.Services.AddControllers().AddJsonOptions(x =>
+                      x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+
             builder.Services.AddScoped<ICarManipulate, CarManipulateService>();
 
             builder.Services.AddScoped<ICarPartsManipulate, CarPartsManipulateService>();
+
+            builder.Services.AddScoped<IAssign, AssignService>();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
