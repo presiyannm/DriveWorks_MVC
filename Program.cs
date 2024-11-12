@@ -17,6 +17,11 @@ namespace DriveWorks_MVC
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -28,10 +33,9 @@ namespace DriveWorks_MVC
 
             builder.Services.AddScoped<ICarPartsManipulate, CarPartsManipulateService>();
 
-            //builder.Services.AddScoped<IAssign, AssignService>();
+            builder.Services.AddScoped<IHomeActions, HomeActionsService>();
 
-            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            //builder.Services.AddScoped<IAssign, AssignService>();
 
             builder.Services.AddControllersWithViews();
 
@@ -62,6 +66,8 @@ namespace DriveWorks_MVC
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

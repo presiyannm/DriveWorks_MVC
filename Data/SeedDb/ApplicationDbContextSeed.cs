@@ -55,6 +55,24 @@ namespace DriveWorks_MVC.Data.SeedDb
                     await userManager.AddToRoleAsync(regularUser, "User");
                 }
             }
+
+            var managerUser = await userManager.FindByEmailAsync("manager@domain.com");
+            if (managerUser == null)
+            {
+                managerUser = new IdentityUser
+                { 
+                    UserName = "manager@domain.com",
+                    Email = "manager@domain.com"
+                };
+
+                var result = await userManager.CreateAsync(managerUser, "ManagerPassword123!");
+
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(managerUser, "Manager");
+                }
+
+            }
         }
 
         public static async Task SeedDataAsync(IServiceProvider serviceProvider, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)

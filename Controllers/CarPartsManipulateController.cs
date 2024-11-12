@@ -1,11 +1,13 @@
 ﻿using DriveWorks_MVC.Interfaces;
 using DriveWorks_MVC.Models.ViewModels;
 using DriveWorks_MVC.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DriveWorks_MVC.Controllers
 {
+    [Authorize(Roles = "Manager")]
     public class CarPartsManipulateController : Controller
     {
         private ICarPartsManipulate carPartsManipulateService;

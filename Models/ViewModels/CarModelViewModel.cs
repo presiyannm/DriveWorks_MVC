@@ -8,6 +8,8 @@ namespace DriveWorks_MVC.Models.ViewModels
 
         public int Id { get; set; }
 
+        public int BrandId { get; set; }
+
         [Required]
         public string BrandName {  get; set; } = string.Empty;
 
