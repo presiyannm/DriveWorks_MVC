@@ -17,7 +17,7 @@ namespace DriveWorks_MVC.Services
 
         public async Task AssignCarPartsAsync(int carModelId, IEnumerable<int> carPartsIds)
         {
-            var carModel = await _dbContext.CarModels.FirstOrDefaultAsync(c => c.Id == carModelId);
+            var carModel = await _dbContext.CarModels.Include(cp => cp.CarParts).FirstOrDefaultAsync(c => c.Id == carModelId);
 
             if (carModel == null)
             {
@@ -30,7 +30,11 @@ namespace DriveWorks_MVC.Services
 
             foreach (var carPart in carParts)
             {
-                carModel.CarParts.Add(carPart);
+                if(!carModel.CarParts.Contains(carPart))
+                {
+                    carModel.CarParts.Add(carPart);
+                }
+                
             }
 
             await _dbContext.SaveChangesAsync();

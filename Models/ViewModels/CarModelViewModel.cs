@@ -29,5 +29,7 @@ namespace DriveWorks_MVC.Models.ViewModels
 
         public List<SelectListItem> CarModelOptions { get; set; } = new();
 
+        public List<IGrouping<string, CarPart>> CarPartsGrouped { get; set; } = new();
+
     }
 }

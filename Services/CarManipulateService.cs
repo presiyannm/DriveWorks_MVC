@@ -55,8 +55,8 @@ namespace DriveWorks_MVC.Services
         }
 
         public async Task EditCar(CarModelViewModel carModelViewModel)
-        {            
-            var carModel = await _dbContext.CarModels.FirstOrDefaultAsync(c => c.Id ==  carModelViewModel.Id);
+        {
+            var carModel = await _dbContext.CarModels.FirstOrDefaultAsync(c => c.Id == carModelViewModel.Id);
 
             if (carModel == null)
             {
@@ -69,11 +69,31 @@ namespace DriveWorks_MVC.Services
 
         }
 
-        public async Task<List<CarModel>> GetAllCarsAsync()
+        public async Task<List<CarModelViewModel>> GetAllCarsAsync()
         {
-            var cars = await _dbContext.CarModels.Include(c => c.Brand).ToListAsync();
+            var cars = await _dbContext.CarModels.Include(c => c.Brand).Include(c => c.CarParts).ToListAsync();
 
-            return cars;
+            var carViewModels = new List<CarModelViewModel>();
+
+            foreach (var car in cars)
+            {
+                var carViewModel = new CarModelViewModel
+                {
+                    Id = car.Id,
+                    BrandName = car.Brand.Name,
+                    ModelName = car.Name,
+                    Description = car.Description,
+                    YearOfRelease = car.YearOfRelease,
+                    EngineInformation = car.EngineInformation,
+                    CarPartsGrouped = car.CarParts
+                    .GroupBy(p => p.Type)
+                    .ToList()
+                };
+
+                carViewModels.Add(carViewModel);
+            }
+
+            return carViewModels;
         }
 
         public async Task<CarModelViewModel> GetCarById(int id)

@@ -1,4 +1,6 @@
-﻿namespace DriveWorks_MVC.Models.ViewModels
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace DriveWorks_MVC.Models.ViewModels
 {
     public class AssignCarViewModel
     {
@@ -9,5 +11,7 @@
         public int carModelId { get; set; }
 
         public IEnumerable<int> carPartsIds { get; set; } = new HashSet<int>();
+
+        public List<SelectListItem> CarPartsOptions { get; set; } = new();
     }
 }

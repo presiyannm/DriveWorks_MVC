@@ -27,8 +27,9 @@
 
             <div class="form-group">
                 <label for="CarParts">Select Car Parts</label>
-                <select id="CarParts" name="CarParts" class="form-control" multiple="multiple" asp-for="@Model.carPartsIds">
+                <select asp-for="@Model.carPartsIds" asp-items="@Model.CarPartsOptions" class="form-control" multiple="multiple" id="CarParts">
                 </select>
+                <span asp-validation-for="@Model.carPartsIds" class="text-danger"></span>
             </div>
             <br />
 

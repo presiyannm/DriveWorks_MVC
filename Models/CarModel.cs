@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace DriveWorks_MVC.Models
 {
@@ -27,5 +28,6 @@ namespace DriveWorks_MVC.Models
         public string EngineInformation { get; set; } = string.Empty;
 
         public virtual ICollection<CarPart> CarParts { get; set; } = new HashSet<CarPart>();
+
     }
 }

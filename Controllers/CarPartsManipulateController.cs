@@ -72,14 +72,14 @@ namespace DriveWorks_MVC.Controllers
         {
              await carPartsManipulateService.EditCarPart(editCarPartViewModel);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("ShowAllCarParts", "CarPartsManipulate");
         }
 
         public async Task<IActionResult> RemoveCarPart(int id)
         {
             await carPartsManipulateService.RemoveCarPartByIdAsync(id);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("ShowAllCarParts", "CarPartsManipulate");
         }
     }
 }

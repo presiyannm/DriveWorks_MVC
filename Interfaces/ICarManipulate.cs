@@ -11,7 +11,7 @@ namespace DriveWorks_MVC.Interfaces
 
         public Task EditCar(CarModelViewModel carModelViewModel);
 
-        public Task<List<CarModel>> GetAllCarsAsync();
+        public Task<List<CarModelViewModel>> GetAllCarsAsync();
 
         public Task<CarModelViewModel> GetCarById(int id);
 

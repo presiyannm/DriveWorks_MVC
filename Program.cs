@@ -1,5 +1,7 @@
 using DriveWorks_MVC.Data;
+using DriveWorks_MVC.Data.SeedDb;
 using DriveWorks_MVC.Interfaces;
+using DriveWorks_MVC.Models.Identity;
 using DriveWorks_MVC.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -26,11 +28,14 @@ namespace DriveWorks_MVC
 
             builder.Services.AddScoped<ICarPartsManipulate, CarPartsManipulateService>();
 
-            builder.Services.AddScoped<IAssign, AssignService>();
+            //builder.Services.AddScoped<IAssign, AssignService>();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddRazorPages();
 
             var app = builder.Build();
 
@@ -46,6 +51,13 @@ namespace DriveWorks_MVC
                 app.UseHsts();
             }
 
+            using (var scope = app.Services.CreateScope())
+            {
+                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                ApplicationDbContextSeed.SeedDataAsync(scope.ServiceProvider, userManager, roleManager).Wait();
+            }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -56,6 +68,7 @@ namespace DriveWorks_MVC
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
             app.MapRazorPages();
 
             app.Run();

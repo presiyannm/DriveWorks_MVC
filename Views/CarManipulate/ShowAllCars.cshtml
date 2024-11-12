@@ -1,4 +1,4 @@
-﻿@model List<DriveWorks_MVC.Models.CarModel>
+﻿@model List<DriveWorks_MVC.Models.ViewModels.CarModelViewModel>
 
 @{
     ViewData["Title"] = "All Cars";
@@ -16,31 +16,34 @@
             <th>Year of Release</th>
             <th>Engine Information</th>
             <th>Car Parts</th>
-            <th>Actions</th> 
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-
         @if (Model != null && Model.Any())
         {
             @foreach (var car in Model)
             {
                 <tr>
                     <td>@car.Id</td>
-                    <td>@car.Brand?.Name</td>
-                    <td>@car.Name</td>
+                    <td>@car.BrandName</td>
+                    <td>@car.ModelName</td>
                     <td>@car.Description</td>
                     <td>@car.YearOfRelease</td>
                     <td>@car.EngineInformation</td>
                     <td>
-                        @if (car.CarParts != null && car.CarParts.Any())
+                        @if (car.CarPartsGrouped != null && car.CarPartsGrouped.Any())
                         {
-                            <ul>
-                                @foreach (var part in car.CarParts)
-                                {
-                                    <li>@part.Name</li>  <!-- Assuming CarPart has a Name property -->
-                                }
-                            </ul>
+                            @foreach (var partGroup in car.CarPartsGrouped)
+                            {
+                                <h5>@partGroup.Key</h5> 
+                                <ul>
+                                    @foreach (var part in partGroup)
+                                    {
+                                        <li>@part.Name</li>
+                                    }
+                                </ul>
+                            }
                         }
                         else
                         {
@@ -48,7 +51,6 @@
                         }
                     </td>
                     <td>
-                        <!-- Edit button that redirects to the EditCar action -->
                         <a asp-controller="CarManipulate" asp-action="EditCar" asp-route-id="@car.Id" class="btn btn-primary">Edit</a> |
                         <a asp-controller="CarManipulate" asp-action="RemoveCar" asp-route-id="@car.Id" class="btn btn-primary" style="background-color:#FAA0A0">Delete</a>
                     </td>
@@ -59,6 +61,5 @@
         {
             <tr><td colspan="8">No cars found.</td></tr>
         }
-
     </tbody>
 </table>
