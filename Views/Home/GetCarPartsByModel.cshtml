@@ -30,7 +30,16 @@
                                 <span class="text-danger">Out of Stock</span>
                             }
                         </p>
-                        <button class="btn btn-primary">Buy</button>
+                        <form asp-action="BuyCarPart" asp-controller="BuyItem" method="post">
+                            <input type="hidden" name="Id" value="@carPart.Id" />
+                            <input type="hidden" name="Name" value="@carPart.Name" />
+                            <input type="hidden" name="Description" value="@carPart.Description" />
+                            <input type="hidden" name="Price" value="@carPart.Price" />
+                            <input type="hidden" name="Quantity" value="@carPart.Quantity" />
+                            <input type="hidden" name="IsPartAccessible" value="@carPart.Quantity > 0" />
+
+                            <button type="submit" class="btn btn-primary">Buy</button>
+                        </form>
                     </div>
                 </div>
             </div>

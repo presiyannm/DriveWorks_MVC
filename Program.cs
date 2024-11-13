@@ -35,6 +35,8 @@ namespace DriveWorks_MVC
 
             builder.Services.AddScoped<IHomeActions, HomeActionsService>();
 
+            builder.Services.AddScoped<IPurchase, PurchaseService>();
+
             //builder.Services.AddScoped<IAssign, AssignService>();
 
             builder.Services.AddControllersWithViews();

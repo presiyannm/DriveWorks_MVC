@@ -1,0 +1,54 @@
+﻿/* Full Page Style */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6; /* Light background color */
+}
+
+.confirmation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+}
+
+.confirmation-message {
+    background-color: #4CAF50; /* Green background for success */
+    color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+    .confirmation-message h1 {
+        font-size: 3rem; /* Large heading */
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .confirmation-message p {
+        font-size: 1.25rem; /* Slightly smaller for the description */
+        margin-bottom: 30px;
+    }
+
+.btn-home {
+    background-color: #ffffff; /* White button */
+    color: #4CAF50; /* Green text */
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+    .btn-home:hover {
+        background-color: #f4f7f6; /* Slight background change on hover */
+        transform: translateY(-2px); /* Slight lift effect */
+    }

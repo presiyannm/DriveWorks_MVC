@@ -34,6 +34,7 @@ namespace DriveWorks_MVC.Services
                 {
                     ModelName = model.Name,
                     BrandId = model.Brand.Id,
+                    Id = model.Id
                 };
                 carModelViewModels.Add(carModelViewModel);
             }
@@ -44,11 +45,16 @@ namespace DriveWorks_MVC.Services
 
         public async Task<List<CarPartViewModel>> GetCarPartsByModelAsync(int modelId)
         {
-            var carParts = await _dbContext.CarParts.Include(cp => cp.CarModels).ToListAsync();
+            var carModel = await _dbContext.CarModels.Include(cm => cm.CarParts).FirstOrDefaultAsync(cm => cm.Id == modelId);
+
+            if (carModel == null)
+            {
+                throw new Exception("Car model cannot be null");
+            }
 
             var carPartsViewModels = new List<CarPartViewModel>();
 
-            foreach (var carPart in carParts)
+            foreach (var carPart in carModel.CarParts)
             {
                 var carPartViewModel = new CarPartViewModel()
                 {
