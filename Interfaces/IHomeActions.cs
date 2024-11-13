@@ -8,5 +8,7 @@ namespace DriveWorks_MVC.Interfaces
         public Task<List<CarModelViewModel>> GetAllCarModelsAsync();
 
         public Task<List<CarBrand>> GetAllCarBrandsAsync();
+
+        public Task<List<CarPartViewModel>> GetCarPartsByModelAsync(int modelId);
     }
 }

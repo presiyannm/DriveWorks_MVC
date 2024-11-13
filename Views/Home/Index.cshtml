@@ -1,30 +1,37 @@
 ﻿@model DriveWorks_MVC.Models.ViewModels.HomeViewModel
 
 <div class="container">
-    <h2>Select Car Brand and Model</h2>
+    <form method="post" asp-controller="Home" asp-action="GetCarPartsByModel">
+        <h2>Select Car Brand and Model</h2>
 
-    <!-- Select for Car Brands -->
-    <div class="form-group">
-        <label for="brandSelect">Car Brand</label>
-        <select id="brandSelect" class="form-control">
-            <option value="" selected disabled>Select a brand</option>
-            @foreach (var brand in Model.Brands)
-            {
-                <option value="@brand.Id">@brand.Name</option>
-            }
-        </select>
-    </div>
+        <!-- Select for Car Brands -->
+        <div class="form-group">
+            <label for="brandSelect">Car Brand</label>
+            <select id="brandSelect" class="form-control">
+                <option value="" selected disabled>Select a brand</option>
+                @foreach (var brand in Model.Brands)
+                {
+                    <option value="@brand.Id">@brand.Name</option>
+                }
+            </select>
+        </div>
 
-    <!-- Select for Car Models (will be populated based on selected brand) -->
-    <div class="form-group">
-        <label for="modelSelect">Car Model</label>
-        <select id="modelSelect" class="form-control">
-            <option value="">Select a model</option>
-        </select>
-    </div>
+        <!-- Select for Car Models (will be populated based on selected brand) -->
+        <div class="form-group">
+            <label for="modelSelect">Car Model</label>
+            <select id="modelSelect" class="form-control" name="SelectedModelId" asp-for="SelectedModelId">
+                <option value="" selected disabled>Select a model</option>
+            </select>
+        </div>
+        <br />
+
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
 </div>
+
 
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script src="~/js/brandModelSelector.js"></script> <!-- Link to the external JavaScript file -->
 }

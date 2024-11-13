@@ -48,6 +48,14 @@ namespace DriveWorks_MVC.Controllers
             return Json(filteredModels);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> GetCarPartsByModel(HomeViewModel homeViewModel)
+        {
+            var carParts = await homeActionsService.GetCarPartsByModelAsync(homeViewModel.SelectedModelId);
+
+            return View(carParts);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

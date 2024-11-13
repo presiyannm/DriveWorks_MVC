@@ -22,6 +22,8 @@ namespace DriveWorks_MVC.Models.ViewModels
         [Required]
         public int Quantity { get; set; }
 
+        public bool IsPartAccessible { get; set; }
+
         public List<CarModel> Cars { get; set; } = new();
 
         public IEnumerable<int> SelectedCarIds { get; set; } = new HashSet<int>();

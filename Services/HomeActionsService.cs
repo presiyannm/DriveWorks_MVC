@@ -41,5 +41,29 @@ namespace DriveWorks_MVC.Services
             return carModelViewModels;
 
         }
+
+        public async Task<List<CarPartViewModel>> GetCarPartsByModelAsync(int modelId)
+        {
+            var carParts = await _dbContext.CarParts.Include(cp => cp.CarModels).ToListAsync();
+
+            var carPartsViewModels = new List<CarPartViewModel>();
+
+            foreach (var carPart in carParts)
+            {
+                var carPartViewModel = new CarPartViewModel()
+                {
+                    Name = carPart.Name,
+                    Description = carPart.Description,
+                    Type = carPart.Type,
+                    Price = carPart.Price,
+                    Quantity = carPart.Quantity,
+                    IsPartAccessible = carPart.Quantity > 0
+                };
+
+                carPartsViewModels.Add(carPartViewModel);
+            }
+
+            return carPartsViewModels;
+        }
     }
 }

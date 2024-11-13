@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DriveWorks_MVC.Models.ViewModels.CarPartViewModel>
+
+@{
+    ViewData["Title"] = "Car Parts";
+}
+
+@section Styles {
+    <link href="~/css/GetCarPartsByModel.css" rel="stylesheet" />
+}
+
+<div class="container">
+    <h2>Available Car Parts</h2>
+    <div class="row">
+        @foreach (var carPart in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@carPart.Name</h5>
+                        <p class="card-text">@carPart.Description</p>
+                        <p class="card-text"><strong>Price:</strong> $@carPart.Price</p>
+                        <p class="card-text">
+                            <strong>Status:</strong>
+                            @if (carPart.IsPartAccessible)
+                            {
+                                <span class="text-success">Available</span>
+                            }
+                            else
+                            {
+                                <span class="text-danger">Out of Stock</span>
+                            }
+                        </p>
+                        <button class="btn btn-primary">Buy</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
