@@ -39,7 +39,7 @@
 
                         <div class="form-group">
                             <label for="quantity">Quantity</label>
-                            <input type="number" class="form-control" id="PurchasedQuantity" name="PurchasedQuantity" min="1" value="1" asp-for="PurchasedQuantity" required />
+                            <input type="number" class="form-control" id="PurchasedQuantity" name="PurchasedQuantity" min="1" max="@Model.Quantity" value="1" asp-for="PurchasedQuantity" required />
                         </div>
 
                         <br />

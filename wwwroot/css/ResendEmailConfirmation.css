@@ -1,0 +1,37 @@
+﻿/* ResendEmailConfirmation.css */
+
+/* General page container styling */
+.container {
+    margin-top: 40px;
+}
+
+/* Form input fields */
+.form-floating input,
+.form-floating select {
+    border-radius: 0.375rem;
+}
+
+/* Green button styling */
+.btn-primary {
+    background-color: #28a745; /* Green background */
+    border-color: #28a745; /* Green border */
+}
+
+    .btn-primary:hover {
+        background-color: #218838; /* Darker green on hover */
+        border-color: #1e7e34; /* Darker green border on hover */
+    }
+
+/* Centering the text */
+h1, h2 {
+    text-align: center;
+}
+
+hr {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.text-danger {
+    font-size: 0.875rem;
+}

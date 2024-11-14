@@ -1,6 +1,7 @@
 using DriveWorks_MVC.Interfaces;
 using DriveWorks_MVC.Models;
 using DriveWorks_MVC.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -12,15 +13,33 @@ namespace DriveWorks_MVC.Controllers
 
         private IHomeActions homeActionsService;
 
-        public HomeController(ILogger<HomeController> logger, IHomeActions homeActionsService)
+        private UserManager<IdentityUser> _userManager;
+
+        private RoleManager<IdentityRole> _roleManager;
+
+        public HomeController(ILogger<HomeController> logger, IHomeActions homeActionsService, RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager)
         {
             _logger = logger;
             this.homeActionsService = homeActionsService;
+            _roleManager = roleManager;
+            _userManager = userManager;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user != null)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+
+                if (!roles.Any())
+                {
+                    await _userManager.AddToRoleAsync(user, "User");
+                }
+            }
+
             var brands = await homeActionsService.GetAllCarBrandsAsync();
 
             var models = await homeActionsService.GetAllCarModelsAsync();

@@ -3,58 +3,72 @@
 @{
     ViewData["Title"] = "All Car Parts";
 }
-@if (Model != null && Model.Any())
-{
 
-    <h2>All Car Parts</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Type</th>
-                <th>Is Part Accessible</th>
-                <th>Car Models</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <!-- Link to the external CSS file for this view -->
+    <link rel="stylesheet" href="~/css/AllCarParts.css" asp-append-version="true">
+</head>
+<body>
 
+    <div class="container">
 
-            @foreach (var carPart in Model)
-            {
-                <tr>
-                    <td>@carPart.Id</td>
-                    <td>@carPart.Name</td>
-                    <td>@carPart.Description</td>
-                    <td>@carPart.Price.ToString("C")</td>
-                    <td>@carPart.Quantity</td>
-                    <td>@carPart.Type</td>
-                    <td>@(carPart.IsPartAccessible ? "Yes" : "No")</td>
-                    <td>
-                        <ul>
-                            @foreach (var carModel in carPart.CarModels)
-                            {
-                                <li>@carModel.Name</li>
-                            }
-                        </ul>
-                    </td>
-                    <td>
-                        <a asp-controller="CarPartsManipulate" asp-action="EditCarPart" asp-route-id="@carPart.Id" class="btn btn-primary">Edit</a> |
-                        <a asp-controller="CarPartsManipulate" asp-action="RemoveCarPart" asp-route-id="@carPart.Id" class="btn btn-primary" style="background-color:#FAA0A0">Delete</a>
-                    </td>
-                </tr>
-            }
+        @if (Model != null && Model.Any())
+        {
+            <h2>All Car Parts</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Type</th>
+                        <th>Is Part Accessible</th>
+                        <th>Car Models</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var carPart in Model)
+                    {
+                        <tr>
+                            <td>@carPart.Id</td>
+                            <td>@carPart.Name</td>
+                            <td>@carPart.Description</td>
+                            <td>@carPart.Price.ToString("C")</td>
+                            <td>@carPart.Quantity</td>
+                            <td>@carPart.Type</td>
+                            <td>@(carPart.IsPartAccessible ? "Yes" : "No")</td>
+                            <td>
+                                <ul>
+                                    @foreach (var carModel in carPart.CarModels)
+                                    {
+                                        <li>@carModel.Name</li>
+                                    }
+                                </ul>
+                            </td>
+                            <td>
+                                <a asp-controller="CarPartsManipulate" asp-action="EditCarPart" asp-route-id="@carPart.Id" class="btn btn-primary">Edit</a> |
+                                <a asp-controller="CarPartsManipulate" asp-action="RemoveCarPart" asp-route-id="@carPart.Id" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h4>No car parts registered.</h4>
+        }
 
-        </tbody>
+    </div>
 
-    </table>
-}
-else
-{
-    <h4>No car parts registered.</h4>
-}
+</body>
+</html>

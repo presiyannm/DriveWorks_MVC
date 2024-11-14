@@ -1,0 +1,69 @@
+﻿/* AllCarParts.css */
+
+.container {
+    margin-top: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+    .table th, .table td {
+        padding: 10px;
+        text-align: left;
+    }
+
+.table-striped tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.table-striped tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.table th {
+    background-color: #28a745; /* Change to green */
+    color: white;
+}
+
+.table td {
+    border: 1px solid #ddd;
+}
+
+.table .btn {
+    margin: 0 5px;
+}
+
+/* Customize button colors to green */
+.table .btn-primary {
+    background-color: #28a745; /* Green background */
+    border-color: #28a745; /* Green border */
+}
+
+    .table .btn-primary:hover {
+        background-color: #218838; /* Darker green on hover */
+        border-color: #1e7e34; /* Darker green border on hover */
+    }
+
+.table .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+    .table .btn-danger:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+    }
+
+/* Centered text for no data message */
+h4 {
+    text-align: center;
+    color: #6c757d;
+}

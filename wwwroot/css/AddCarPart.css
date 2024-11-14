@@ -22,7 +22,7 @@ h2 {
 }
 
 /* Form styling with increased width */
-form {
+.loginForm {
     width: 100%;
     max-width: 800px; /* Increased from 600px */
     background-color: #ffffff;

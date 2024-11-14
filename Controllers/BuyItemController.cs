@@ -1,9 +1,11 @@
 ﻿using DriveWorks_MVC.Interfaces;
 using DriveWorks_MVC.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DriveWorks_MVC.Controllers
 {
+    [Authorize]  
     public class BuyItemController : Controller
     {
         private IPurchase purchaseService;
