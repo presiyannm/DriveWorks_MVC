@@ -1,65 +1,77 @@
 ﻿@model List<DriveWorks_MVC.Models.ViewModels.CarModelViewModel>
 
-@{
-    ViewData["Title"] = "All Cars";
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Cars</title>
 
-<h1>@ViewData["Title"]</h1>
+    <!-- Link to external CSS file for styling -->
+    <link rel="stylesheet" href="~/css/ShowAllCars.css" asp-append-version="true">
+</head>
+<body>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Brand</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Year of Release</th>
-            <th>Engine Information</th>
-            <th>Car Parts</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model != null && Model.Any())
-        {
-            @foreach (var car in Model)
-            {
+    <div class="container">
+        <h1>All Cars</h1>
+        <table class="table table-bordered">
+            <thead>
                 <tr>
-                    <td>@car.Id</td>
-                    <td>@car.BrandName</td>
-                    <td>@car.ModelName</td>
-                    <td>@car.Description</td>
-                    <td>@car.YearOfRelease</td>
-                    <td>@car.EngineInformation</td>
-                    <td>
-                        @if (car.CarPartsGrouped != null && car.CarPartsGrouped.Any())
-                        {
-                            @foreach (var partGroup in car.CarPartsGrouped)
-                            {
-                                <h5>@partGroup.Key</h5> 
-                                <ul>
-                                    @foreach (var part in partGroup)
-                                    {
-                                        <li>@part.Name</li>
-                                    }
-                                </ul>
-                            }
-                        }
-                        else
-                        {
-                            <span>No parts available</span>
-                        }
-                    </td>
-                    <td>
-                        <a asp-controller="CarManipulate" asp-action="EditCar" asp-route-id="@car.Id" class="btn btn-primary">Edit</a> |
-                        <a asp-controller="CarManipulate" asp-action="RemoveCar" asp-route-id="@car.Id" class="btn btn-primary" style="background-color:#FAA0A0">Delete</a>
-                    </td>
+                    <th>Id</th>
+                    <th>Brand</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Year of Release</th>
+                    <th>Engine Information</th>
+                    <th>Car Parts</th>
+                    <th>Actions</th>
                 </tr>
-            }
-        }
-        else
-        {
-            <tr><td colspan="8">No cars found.</td></tr>
-        }
-    </tbody>
-</table>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var car in Model)
+                    {
+                        <tr>
+                            <td>@car.Id</td>
+                            <td>@car.BrandName</td>
+                            <td>@car.ModelName</td>
+                            <td>@car.Description</td>
+                            <td>@car.YearOfRelease</td>
+                            <td>@car.EngineInformation</td>
+                            <td>
+                                @if (car.CarPartsGrouped != null && car.CarPartsGrouped.Any())
+                                {
+                                    @foreach (var partGroup in car.CarPartsGrouped)
+                                    {
+                                        <h5>@partGroup.Key</h5>
+                                        <ul>
+                                            @foreach (var part in partGroup)
+                                            {
+                                                <li>@part.Name</li>
+                                            }
+                                        </ul>
+                                    }
+                                }
+                                else
+                                {
+                                    <span>No parts available</span>
+                                }
+                            </td>
+                            <td>
+                                <a asp-controller="CarManipulate" asp-action="EditCar" asp-route-id="@car.Id" class="btn btn-primary">Edit</a>
+                                <a asp-controller="CarManipulate" asp-action="RemoveCar" asp-route-id="@car.Id" class="btn btn-delete">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="8">No cars found.</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+﻿/* General Styling for All Cars View */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f9fb;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Table Styling */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+    .table thead {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .table th,
+    .table td {
+        padding: 12px 15px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    .table th {
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #f7f9fb;
+    }
+
+/* Button Styling */
+.btn {
+    color: white;
+    padding: 8px 12px;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #4CAF50;
+}
+
+    .btn-primary:hover {
+        background-color: #45a049;
+    }
+
+.btn-delete {
+    background-color: #FAA0A0;
+}
+
+    .btn-delete:hover {
+        background-color: #f88379;
+    }
+
+/* Additional Styling for Nested Car Parts */
+ul {
+    padding-left: 20px;
+    list-style-type: disc;
+    margin: 0;
+    color: #333;
+}
+
+h5 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #4CAF50;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .table,
+    .table th,
+    .table td {
+        font-size: 0.9rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+}

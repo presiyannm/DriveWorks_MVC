@@ -1,4 +1,4 @@
-﻿/* General Styling for the Car Parts View */
+﻿/* General Styling for Buy Car Part View */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f7f9fb;
@@ -7,8 +7,8 @@ body {
 }
 
 .container {
-    max-width: 1200px;
-    margin: 20px auto; /* Adds some top and bottom margin */
+    max-width: 800px;
+    margin: 20px auto; /* Adds spacing around the container */
     padding: 0 15px;
 }
 
@@ -30,7 +30,7 @@ h2 {
 }
 
     .card:hover {
-        transform: translateY(-5px); /* Adds a subtle hover effect */
+        transform: translateY(-5px); /* Subtle hover effect */
     }
 
 .card-body {
@@ -60,26 +60,66 @@ h2 {
     font-weight: bold;
 }
 
-/* Buy Button Styling */
-button.btn {
-    background-color: #4CAF50;
-    color: white;
+/* Form Styling */
+.form-group {
+    margin-top: 20px;
+    text-align: left;
+}
+
+label {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+input.form-control {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+    input.form-control:focus {
+        border-color: #4CAF50; /* Green border on focus */
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 128, 0, 0.2);
+    }
+
+/* Button Styling */
+button.btn-success, .btn-secondary {
     padding: 10px 20px;
     font-size: 1rem;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 100%; /* Makes the button span the full card width */
+    width: 100%; /* Full-width for a consistent look */
 }
 
-    button.btn:hover {
+button.btn-success {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+    button.btn-success:hover {
         background-color: #45a049;
     }
 
-    button.btn:focus {
-        outline: none;
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    margin-top: 15px;
+}
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
     }
+
+.btn:focus {
+    outline: none;
+}
 
 /* Responsive Layout */
 @media (max-width: 576px) {
@@ -91,7 +131,7 @@ button.btn {
         font-size: 1.3rem;
     }
 
-    .card-text, button.btn {
+    .card-text, button.btn, label {
         font-size: 0.9rem;
     }
 }

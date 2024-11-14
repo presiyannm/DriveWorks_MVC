@@ -1,57 +1,50 @@
 ﻿@model DriveWorks_MVC.Models.ViewModels.CarModelViewModel
 
-@{
-    ViewData["Title"] = "Edit Car";
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Car</title>
 
-<h1>@ViewData["Title"]</h1>
+    <!-- Link to external CSS file for styling -->
+    <link rel="stylesheet" href="~/css/EditCar.css" asp-append-version="true">
+</head>
+<body>
 
-<form asp-action="EditCar" method="post">
-    <div class="form-group">
-        <label asp-for="Id"></label>
-        <input asp-for="Id" class="form-control" readonly /> <!-- Read-only, as the ID should not be editable -->
+    <div class="container">
+        <h1>Edit Car</h1>
+
+        <form asp-action="EditCar" method="post">
+            <div class="form-group">
+                <label asp-for="Id">ID</label>
+                <input asp-for="Id" class="form-control" readonly /> <!-- ID should be read-only -->
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ModelName">Model Name</label>
+                <input asp-for="ModelName" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Description">Description</label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="YearOfRelease">Year of Release</label>
+                <input asp-for="YearOfRelease" type="number" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EngineInformation">Engine Information</label>
+                <input asp-for="EngineInformation" class="form-control" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a asp-controller="CarManipulate" asp-action="ShowAllCars" class="btn btn-secondary">Cancel</a>
+        </form>
     </div>
 
-    <div class="form-group">
-        <label asp-for="@Model.ModelName">Model Name</label>
-        <input asp-for="@Model.ModelName" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="@Model.Description">Description</label>
-        <textarea asp-for="@Model.Description" class="form-control"></textarea>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="@Model.YearOfRelease">Year of release</label>
-        <input asp-for="@Model.YearOfRelease" type="number" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="@Model.EngineInformation">Engine information</label>
-        <input asp-for="@Model.EngineInformation" class="form-control" />
-    </div>
-
-    <!-- Assuming CarParts is a list of strings (e.g., part names), you can render a list of inputs for each part -->
-    <div class="form-group">
-        <label>Car Parts</label>
-        @if (Model.Parts != null && Model.Parts.Any())
-        {
-            <ul>
-                @for (int i = 0; i < Model.Parts.Count; i++)
-                {
-                    <li>
-                        <input asp-for="Parts[i].Name" class="form-control" />
-                    </li>
-                }
-            </ul>
-        }
-        else
-        {
-            <span>No parts available</span>
-        }
-    </div>
-
-    <button type="submit" class="btn btn-primary">Save Changes</button>
-    <a asp-controller="CarManipulate" asp-action="ShowAllCars" class="btn btn-secondary">Cancel</a>
-</form>
+</body>
+</html>

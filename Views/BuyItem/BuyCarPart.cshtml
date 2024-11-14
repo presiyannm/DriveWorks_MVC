@@ -5,7 +5,7 @@
 }
 
 @section Styles {
-    <link href="~/css/GetCarPartsByModel.css" rel="stylesheet" />
+    <link href="~/css/BuyCarPart.css" rel="stylesheet" />
 }
 
 <div class="container">
@@ -41,6 +41,8 @@
                             <label for="quantity">Quantity</label>
                             <input type="number" class="form-control" id="PurchasedQuantity" name="PurchasedQuantity" min="1" value="1" asp-for="PurchasedQuantity" required />
                         </div>
+
+                        <br />
 
                         <button type="submit" class="btn btn-success">Confirm Purchase</button>
                     </form>
