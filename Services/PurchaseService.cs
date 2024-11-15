@@ -14,24 +14,26 @@ namespace DriveWorks_MVC.Services
             _dbContext = dbContext;
         }
 
-        public async Task ConfirmPurchase(CarPartViewModel carPartViewModel)
+        public async Task ConfirmPurchase(BuyCarPartViewModel buyCarPartViewModel)
         {
-            var carPart = await _dbContext.CarParts.FirstOrDefaultAsync(cp => cp.Name == carPartViewModel.Name);
+            var carPart = await _dbContext.CarParts.FirstOrDefaultAsync(cp => cp.Name == buyCarPartViewModel.Name);
 
             if (carPart == null)
             {
                 throw new Exception("Car part cannot be null");
             }
 
-            if (carPart.Quantity - carPartViewModel.PurchasedQuantity > 0)
+            if (carPart.Quantity - buyCarPartViewModel.PurchasedQuantity > 0)
             {
-                carPart.Quantity-=carPartViewModel.PurchasedQuantity;
+                carPart.Quantity-=buyCarPartViewModel.PurchasedQuantity;
             }
-            else if(carPart.Quantity - carPartViewModel.PurchasedQuantity == 0)
+
+            else if(carPart.Quantity - buyCarPartViewModel.PurchasedQuantity == 0)
             {
                 carPart.Quantity = 0;
                 carPart.IsPartAccessible = false;
             }
+
             else
             {
                 throw new Exception("Quantity cannot be below zero");

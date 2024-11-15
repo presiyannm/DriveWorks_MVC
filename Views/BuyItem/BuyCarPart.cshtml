@@ -1,4 +1,4 @@
-﻿@model DriveWorks_MVC.Models.ViewModels.CarPartViewModel
+﻿@model DriveWorks_MVC.Models.ViewModels.BuyCarPartViewModel
 
 @{
     ViewData["Title"] = "Buy Car Part";
@@ -9,10 +9,10 @@
 }
 
 <div class="container">
-    <h2>Buy Car Part</h2>
     <div class="row">
-        <div class="col-md-6 offset-md-3">
+        <div class="col">
             <div class="card">
+                <h2>Buy Car Part</h2>
                 <div class="card-body">
                     <h5 class="card-title">@Model.Name</h5>
                     <p class="card-text">@Model.Description</p>
@@ -37,9 +37,41 @@
                         <input type="hidden" name="Quantity" value="@Model.Quantity" />
                         <input type="hidden" name="IsPartAccessible" value="@Model.IsPartAccessible" />
 
+                        <!-- Quantity -->
                         <div class="form-group">
-                            <label for="quantity">Quantity</label>
-                            <input type="number" class="form-control" id="PurchasedQuantity" name="PurchasedQuantity" min="1" max="@Model.Quantity" value="1" asp-for="PurchasedQuantity" required />
+                            <label for="PurchasedQuantity">Quantity</label>
+                            <input type="text" class="form-control" id="PurchasedQuantity" name="PurchasedQuantity" min="1" max="@Model.Quantity" value="1" asp-for="PurchasedQuantity" required />
+                        </div>
+
+                        <!-- Buyer Information -->
+                        <div class="form-group">
+                            <label asp-for="FirstName"></label>
+                            <input type="text" class="form-control" asp-for="FirstName" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="LastName"></label>
+                            <input type="text" class="form-control" asp-for="LastName" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="PhoneNumber"></label>
+                            <input type="tel" class="form-control" asp-for="PhoneNumber" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Location"></label>
+                            <input type="text" class="form-control" asp-for="Location" />
+                            <span asp-validation-for="Location" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Email"></label>
+                            <input type="email" class="form-control" asp-for="Email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
 
                         <br />
@@ -54,3 +86,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
